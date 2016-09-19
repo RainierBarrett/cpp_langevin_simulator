@@ -1,6 +1,6 @@
 # cpp_langevin_simulator
 
-![alt text](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator# "build status")
+[![Build Status](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator.svg?branch=master)](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator)
 
 This is a Langevin Dynamics simulator in C++
 
