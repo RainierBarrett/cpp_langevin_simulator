@@ -1,7 +1,7 @@
 #include "langevin.h"
 #include "catch.hpp"
 
-using namespace std;
+using namespace cpp_langevin_simulator;
 
 SCENARIO( "Integrator can move the particle in a step", "[integrator]"){
 
@@ -17,7 +17,7 @@ SCENARIO( "Integrator can move the particle in a step", "[integrator]"){
       THEN( "The particle position should change"){
 	double x_init = x0;
 	for(int i = 0; i < 10; i++){
-	  integrator.timestep();//this should update integrator.x and move enough to matter
+	  integrator.step();//this should update integrator.x and move enough to matter
 	}
 	double new_x = integrator.x;
 	REQUIRE( abs(new_x - x_init) < EPSILON);
