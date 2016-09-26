@@ -11,8 +11,8 @@ SCENARIO( "Make sure built-in file reader can parse known example file properly"
   GIVEN( "An input file and the integrator's reader"){
     const double EPSILON = 0.0005;//for double "comparisons"
     Langevin integrator;
-    std::string filename = "pot_example.txt";
-//    std::cout << "THE PLACE I AM LOOKING IS " << filename <<"\n";
+    std::string filename = "./pot_example.txt";
+    //std::cout << "THE PLACE I AM LOOKING IS " << filename <<"\n";
     integrator.read_file(filename);
     WHEN("reading from a file"){
       THEN("we should get correct array lengths"){
