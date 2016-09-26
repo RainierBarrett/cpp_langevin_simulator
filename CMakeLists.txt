@@ -37,7 +37,7 @@ set (CATCH_DIR "${MAINFOLDER}/thirdparity/catch")
 #
 # Compiler flag for code coverage
 #
-#set(GCC_COVERAGE_COMPILE_FLAGS "-coverage")
+set(GCC_COVERAGE_COMPILE_FLAGS "-coverage")
 #set (CMAKE_CXX_FLAGS )
 
 #

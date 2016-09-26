@@ -21,7 +21,7 @@ namespace cpp_langevin_simulator{
     input.open(filename.c_str());
     /*cout << "Please enter the number of lines in target file.\n";
       cin >> nlines;*/
-    cout << "the number of lines is now " << nlines <<".\n";
+    //cout << "the number of lines is now " << nlines <<".\n";
     positions = new double[nlines];
     forces = new double[nlines];
     potentials = new double[nlines];
@@ -29,9 +29,33 @@ namespace cpp_langevin_simulator{
     for(int i = 0; i < nlines; i++){
       input >> idx >> positions[i] >> potentials[i] >> forces[i];
     }
-    cout << "and now forces[0] = " << forces[0] << "\n";
+    //cout << "and now forces[0] = " << forces[0] << "\n";
   }
-  void Langevin::step(){
+
+  void Langevin::set_x(double new_x){
+    x = new_x;
     return;
+  }
+
+  void Langevin::set_v(double new_v){
+    v = new_v;
+    return;
+  }
+
+  void Langevin::set_m(double new_m){
+    m = new_m;
+    return;
+  }
+
+  void set_lambda(double new_lambda){
+    lambda = new_lambda;
+    return;
+  }
+  
+  //A simple Euler-integrated Langevin timestep. Updates the position and velocity.
+  void Langevin::step(){
+    int idx = get_idx(x);
+    x += dt * v;
+    v += dt * forces[idx]/m;
   }
 }

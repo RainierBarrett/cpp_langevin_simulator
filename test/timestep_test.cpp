@@ -7,7 +7,7 @@ SCENARIO( "Integrator can move the particle in a step", "[integrator]"){
 
   GIVEN( "An integrator"){
     Langevin integrator;
-    const double EPSILON = 0.00001;//for double "comparisons"
+    const double EPSILON = 0.0005;//for double "comparisons"
     const double x0 = 0.0;
     const double v0 = 1.0;
     const double lambda = 0.5;
@@ -20,7 +20,7 @@ SCENARIO( "Integrator can move the particle in a step", "[integrator]"){
 	  integrator.step();//this should update integrator.x and move enough to matter
 	}
 	double new_x = integrator.x;
-	REQUIRE( abs(new_x - x_init) < EPSILON);
+	REQUIRE( abs(new_x - x_init) > EPSILON);
       }
     }
   }
