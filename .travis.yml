@@ -19,6 +19,7 @@ script:
   - cd build
   - cmake ..
   - cp ../test/pot_example.txt ./test/pot_example.txt
+  - cp ../test/pot_example.txt ./pot_example.txt
   - make
   - make test
 
