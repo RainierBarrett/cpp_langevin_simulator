@@ -13,7 +13,14 @@ script:
   - make catch
 
 after_success:
-  - chmod u+rw src/CMakeFiles/sharedlib.dir/langevin.cpp.gcno
+  - chmod a+rw src/CMakeFiles/sharedlib.dir/langevin.cpp.gcno
   - make coverage
+
+
+
+
+
+
+
 
 

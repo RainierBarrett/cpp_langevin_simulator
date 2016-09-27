@@ -24,6 +24,15 @@ After building this project you may run its unit tests by using these commands:
     $ make test  # To run all tests via CTest
     $ make catch # Run all tests directly, showing more details to you
 
+## Checking code coverage
+
+For now, I've been unable to convince Travis to play nice with an automated test for this.
+From within the build directory, you can run:
+
+    $make coverage
+
+This will run gcov on the Langevin cpp file, and report the code coverage to the terminal. Sorry it's not automatic yet.
+
 ## License
 
 ![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)
