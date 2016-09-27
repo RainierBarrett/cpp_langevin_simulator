@@ -13,5 +13,6 @@ add_test(NAME AllTests COMMAND ${TEST_BIN})
 add_test(NAME Coverage COMMAND ${TEST_BIN})
 
 # run catch tests directly
+file(COPY "${MAINFOLDER}/pot_example.txt" DESTINATION "${MAINFOLDER}/build/test")
 add_custom_target(catch "${MAINFOLDER}/bin/${TEST_BIN}" DEPENDS ${TEST_BIN} COMMENT "Executing unit tests..." VERBATIM SOURCES ${TEST_SRC})
 add_custom_target(coverage "${MAINFOLDER}/coverage.sh")

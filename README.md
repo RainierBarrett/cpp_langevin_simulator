@@ -26,12 +26,11 @@ After building this project you may run its unit tests by using these commands:
 
 ## Checking code coverage
 
-For now, I've been unable to convince Travis to play nice with an automated test for this.
-From within the build directory, you can run:
+For now, I've been unable to convince Travis to play nice with an automated test for this. To see it for yourself, you'll have to run a command. From within the build directory, you can run:
 
     $make coverage
 
-This will run gcov on the Langevin cpp file, and report the code coverage to the terminal. Sorry it's not automatic yet.
+This will run gcov on the Langevin cpp file, and report the code coverage to the terminal.
 
 ## License
 
