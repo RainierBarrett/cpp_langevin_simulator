@@ -10,6 +10,7 @@ script:
   - cp ../test/pot_example.txt ../
   - make
   - make test
+  - make catch
   - make coverage
 
 
