@@ -114,7 +114,7 @@ namespace cpp_langevin_simulator{
     double near_bottom_point = (spot - remainder);
     for(int i = 0; i < pos_size; i++){
       if(pow((positions[i] - near_bottom_point),2) < EPSILON){
-	std::cout<<"The size of the positions array is " << pos_size <<".\n";
+//	std::cout<<"The size of the positions array is " << pos_size <<".\n";
 	return(i);
       }
     }
@@ -146,5 +146,3 @@ namespace cpp_langevin_simulator{
     time += dt;
   }
 }
-
-
