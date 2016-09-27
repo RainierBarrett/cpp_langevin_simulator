@@ -1,12 +1,28 @@
+sudo: require
 language: cpp
+compiler: gcc
 
-script:
-- mkdir build
-- cd build
-- cmake ..
-- cp ../test/pot_example.txt ./test/pot_example.txt
-- make
-- make test
+before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+  - sudo pip install codecov
 
-after_success:
-- bash <(curl -s https://codecov.io/bash)
+install: 
+  - sudo apt-get install -qq g++-5
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+
+script: 
+  - ./build.sh
+  - ./travis_qmake_gcc_cpp11_gcov
+  - ./get_code_cov.sh
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cp ../test/pot_example.txt ./test/pot_example.txt
+  - make
+  - make test
+
+
+
+after_success: 
+  - codecov
