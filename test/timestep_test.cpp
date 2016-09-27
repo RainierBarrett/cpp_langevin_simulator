@@ -16,11 +16,15 @@ SCENARIO( "Integrator can move the particle in a few steps'", "[integrator]"){
     integrator.set_lambda(lambda);
     const double m = 5;
     integrator.set_m(m);
-    double positions[11] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
-    integrator.set_positions(positions, 11);
+    double some_positions[11] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    integrator.set_positions(some_positions, 11);
+    integrator.set_dx();
+//    std::cout << "integrator now contains a few numbers? "<< integrator.positions[5] << "\n";
     double forces[11] = {1.0,0.8,0.6,0.4,0.2,0.0,-0.2,-0.4,-0.6,-0.8,-1.0};//"parabolic"
     integrator.set_forces(forces, 11);
-    const double timestep = 0.1;
+    integrator.set_pos_max(some_positions[10]);    
+
+
     WHEN("Time progresses a step"){
       THEN( "The particle position should change"){
 	double x_init = x0;
@@ -28,7 +32,7 @@ SCENARIO( "Integrator can move the particle in a few steps'", "[integrator]"){
 	  integrator.step();//this should update integrator.x and move enough to matter
 	}
 	double new_x = integrator.x;
-	REQUIRE( abs(integrator.x - x_init) > EPSILON);
+	REQUIRE( fabs(integrator.x - x_init) > EPSILON);
       }
     }
 //    WHEN("Time progresses a ways"){}

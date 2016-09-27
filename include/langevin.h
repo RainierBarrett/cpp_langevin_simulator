@@ -19,6 +19,8 @@ namespace cpp_langevin_simulator{
     void set_m(double new_m);//sets the mass, called in setup
     
     double dt;//The length of each timestep-- no set method, it's got a default value only.
+    double dx;//the change between grid points
+    void set_dx();
 
     int pos_size;//the number of indices we have -- the same as the lines in the input file
     void set_pos_size(int size);

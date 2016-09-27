@@ -52,7 +52,7 @@ namespace cpp_langevin_simulator{
   }
 
   void Langevin::set_x(double new_x){
-    x = new_x;
+    x = (new_x == 0 ? 0 : fmod(new_x, pos_max));//brute-force PBCs
     return;
   }
 
@@ -99,15 +99,19 @@ namespace cpp_langevin_simulator{
   int Langevin::get_idx(double spot){
 //    return(x == 0 ? 0 : fmod(fmod(x, pos_max), ((pos_size-1)/ (pos_max - pos_min))));
     //a lazy brute-force way of finding the idx
-    double dx = abs(positions[1] - positions[0]);//I assume an even grid (I sure hope so)
     const double EPSILON = 0.0005;//for double "comparisons"
-    std::cout << "dx is " << dx << "\n";
+//    std::cout << "dx is " << dx << "\n";
     for(int i = 0; i < pos_size; i++){
-      if((((spot - positions[i]) - dx) < EPSILON)){
+      if((((spot - positions[i]) - dx) <=EPSILON)){
 	return(i);
       }
     }
     return(-1);
+  }
+
+  void Langevin::set_dx(){
+    dx = positions[1] - positions[0];
+    return;
   }
 
   //the gaussian process term
@@ -118,8 +122,11 @@ namespace cpp_langevin_simulator{
   //A simple Euler-integrated Langevin timestep. Updates the position and velocity.
   void Langevin::step(){
     int idx = get_idx(x);
-    double tot_force = -lambda * v + eta() - forces[get_idx(x)];
-    x += dt * v;
-    v += dt * tot_force;
+    double tot_force = -lambda * v + eta() - forces[get_idx(x)]/m;
+    double new_x = x + dt*v;
+    set_x(new_x);
+//    std:: cout << "New x value is " << new_x << "\n";
+    double new_v = v + dt * tot_force;
+    set_v(new_v);
   }
 }
