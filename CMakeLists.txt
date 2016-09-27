@@ -25,6 +25,8 @@ set (APPLICATION_VERSION_STRING "${APPLICATION_VERSION_MAJOR}.${APPLICATION_VERS
 #
 set (CMAKE_VERBOSE_MAKEFILE 0) # Use 1 for debugging, 0 for release
 
+set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_CXX_COMPILER "g++")
 
 #
 # Project Output Paths
@@ -38,7 +40,9 @@ set (CATCH_DIR "${MAINFOLDER}/thirdparity/catch")
 # Compiler flag for code coverage
 #
 set(GCC_COVERAGE_COMPILE_FLAGS "-coverage")
-#set (CMAKE_CXX_FLAGS )
+set (CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage" )
+set (CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+set (CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 
 #
 # Project Search Paths

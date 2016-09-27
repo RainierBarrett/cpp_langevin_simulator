@@ -14,6 +14,8 @@ SCENARIO( "Can set up integrator constants correctly", "[integrator]"){
     double mass = 1.54;
     double positions[11] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     double forces[11] = {1.0,0.8,0.6,0.4,0.2,0.0,-0.2,-0.4,-0.6,-0.8,-1.0};//"parabolic"
+    //this one's really just a dummy array, since reading potentials won't happen ever...
+    double potentials[11] = {1.0,0.8,0.6,0.4,0.2,0.0,-0.2,-0.4,-0.6,-0.8,-1.0};
     WHEN("We call the setup functions"){
       integrator.set_x(x0);
       integrator.set_v(v0);
@@ -21,6 +23,7 @@ SCENARIO( "Can set up integrator constants correctly", "[integrator]"){
       integrator.set_m(mass);
       integrator.set_positions(positions, 11);
       integrator.set_forces(forces, 11);
+      integrator.set_potentials(potentials, 11);
 
       THEN( "The values should be set"){
 	REQUIRE( abs(integrator.x - x0) < EPSILON);
@@ -30,6 +33,7 @@ SCENARIO( "Can set up integrator constants correctly", "[integrator]"){
 	for(int i = 0; i < 11; i++){
 	  REQUIRE( abs(integrator.positions[i] - positions[i]) < EPSILON);
 	  REQUIRE( abs(integrator.forces[i] - forces[i]) < EPSILON);
+	  REQUIRE( abs(integrator.potentials[i] - potentials[i] )< EPSILON);
 	}
       }
     }

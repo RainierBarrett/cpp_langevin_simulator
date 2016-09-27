@@ -88,7 +88,7 @@ namespace cpp_langevin_simulator{
   }
 
   void Langevin::set_potentials(double * potentials_arr, int length){
-    forces = (double *)malloc(length * sizeof(double));
+    potentials = (double *)malloc(length * sizeof(double));
     for(int i = 0; i < length; i++){
       potentials[i] = potentials_arr[i];
     }
