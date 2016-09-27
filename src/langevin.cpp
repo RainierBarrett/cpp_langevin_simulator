@@ -106,6 +106,7 @@ namespace cpp_langevin_simulator{
       if((((spot - positions[i]) - dx) <= EPSILON)){
 	return(i);
       }
+      
     }
     return(-1);
   }
