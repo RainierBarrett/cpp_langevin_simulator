@@ -24,14 +24,16 @@ SCENARIO( "Ensure the get_idx method is working properly", "[get_idx]"){
     integrator.set_positions(positions, 11);
     integrator.set_forces(forces, 11);
     integrator.set_pos_size(11);
+    integrator.set_pos_min(positions[0]);
+    integrator.set_pos_max(positions[11]);
 
     WHEN("Getting the index of a known point"){
       THEN("we should get the right index"){
 	REQUIRE( integrator.get_idx(0.0) == 0);//these should be exact
-	REQUIRE( integrator.get_idx(0.04) == 1);//always round up
-	REQUIRE( integrator.get_idx(0.5) == 5);
-	REQUIRE( integrator.get_idx(0.75) == 8);//always round up
-	REQUIRE( integrator.get_idx(0.64) == 7);//always round up
+	REQUIRE( integrator.get_idx(0.04) == 0);//always round down
+	REQUIRE( integrator.get_idx(0.50011) == 5);//always round down
+	REQUIRE( integrator.get_idx(0.75) == 7);//always round down
+	REQUIRE( integrator.get_idx(0.64) == 6);//always round down
       }
     }
   }

@@ -76,6 +76,8 @@ namespace cpp_langevin_simulator{
     for(int i = 0; i < length; i++){
       positions[i] = positions_arr[i];
     }
+//    set_pos_min(positions_arr[0]);
+//    set_pos_max(positions_arr[length]);
     return;
   }
 
@@ -100,15 +102,26 @@ namespace cpp_langevin_simulator{
 //    return(x == 0 ? 0 : fmod(fmod(x, pos_max), ((pos_size-1)/ (pos_max - pos_min))));
     //a lazy brute-force way of finding the idx
     const double EPSILON = 0.0005;//for double "comparisons"
-    if(!dx){set_dx();}
+    set_dx();
 //    std::cout << "dx is " << dx << "\n";
+//    for(int i = 0; i < pos_size; i++){
+//      if((((spot*10 - positions[i]*10) - dx*10) <= EPSILON*10)){
+//	return(i);
+//    }
+//    std::cout<< "the minimum position is "<<pos_min << "and dx is " << dx <<"\n";
+//    int idx = (int(floor((spot - pos_min) / dx)));
+    double remainder = fmod(spot, dx);
+    double near_bottom_point = (spot - remainder);
     for(int i = 0; i < pos_size; i++){
-      if((((spot - positions[i]) - dx) <= EPSILON)){
+      if(pow((positions[i] - near_bottom_point),2) < EPSILON){
+	std::cout<<"The size of the positions array is " << pos_size <<".\n";
 	return(i);
       }
-      
     }
-    return(-1);
+    
+      
+//    }
+//    return(-1);
   }
 
   void Langevin::set_dx(){
@@ -124,7 +137,7 @@ namespace cpp_langevin_simulator{
   //A simple Euler-integrated Langevin timestep. Updates the position and velocity.
   void Langevin::step(){
     int idx = get_idx(x);
-    double tot_force = -lambda * v + eta() - forces[get_idx(x)]/m;
+    double tot_force = -lambda * v + eta() - forces[idx]/m;
     double new_x = x + dt*v;
     set_x(new_x);
 //    std:: cout << "New x value is " << new_x << "\n";
@@ -133,3 +146,5 @@ namespace cpp_langevin_simulator{
     time += dt;
   }
 }
+
+
