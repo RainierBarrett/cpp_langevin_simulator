@@ -6,6 +6,9 @@
 #include <fstream>
 #include <algorithm>
 #include <string>
+#include <boost/random.hpp>
+#include <boost/random/normal_distribution.hpp>
+#include <ctime>
 namespace cpp_langevin_simulator{
   
   void Langevin::read_file(const std::string& filename){
@@ -33,6 +36,7 @@ namespace cpp_langevin_simulator{
     }
     set_pos_min(positions[0]);
     set_pos_max(positions[pos_size -1]);
+    set_dx();
     //cout << "and now forces[0] = " << forces[0] << "\n";
   }
 
@@ -129,9 +133,18 @@ namespace cpp_langevin_simulator{
     return;
   }
 
+
+  //seeding the RNG
+  void Langevin::seed_rng(){
+    rng.seed(static_cast<unsigned int>(std::time(0)));
+    return;
+    }
   //the gaussian process term
-  double Langevin::eta(){
-    return(1.0);
+  double Langevin::eta(){//should make some way to have the distro be class member. Later.
+    boost::normal_distribution<> nd(0.0,1.0);
+    boost::variate_generator<boost::mt19937&, boost::normal_distribution<> > var_nor(rng, nd);
+    double number = var_nor();
+    return(number);
   }
   
   //A simple Euler-integrated Langevin timestep. Updates the position and velocity.

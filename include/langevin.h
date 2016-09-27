@@ -1,4 +1,6 @@
 #include <vector>
+#include <boost/random.hpp>
+#include <boost/random/normal_distribution.hpp>
 #include <cstdlib>
 #include <string>
 namespace cpp_langevin_simulator{
@@ -39,10 +41,13 @@ namespace cpp_langevin_simulator{
     void set_pos_min(double min);
     double pos_max;
     void set_pos_max(double max);
+
+    boost::mt19937 rng;
+    void seed_rng();
     
     void step();//a single timestep in the simulation
     double eta();
     int get_idx(double spot);
-  Langevin() : dt(0.01), time(0.0) {}
+  Langevin() : dt(0.01), time(0.0), lambda(1.0) {}
   };
 }

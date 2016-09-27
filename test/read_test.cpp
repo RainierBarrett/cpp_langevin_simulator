@@ -24,9 +24,10 @@ SCENARIO( "Make sure built-in file reader can parse known example file properly"
 	REQUIRE( (integrator.forces[0] + 0.113475) < EPSILON );
 	REQUIRE( (integrator.potentials[50] - 0.012177) < EPSILON);
       }
-      AND_THEN("The max and min should be set properly"){
+      AND_THEN("The max, min, and dx should be set properly"){
 	REQUIRE( integrator.pos_min == integrator.positions[0]);
 	REQUIRE( integrator.pos_max == integrator.positions[integrator.pos_size -1]);
+	REQUIRE( pow( (integrator.dx - 0.01),2) < EPSILON);
       }
     }
   }
