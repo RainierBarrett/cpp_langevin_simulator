@@ -20,6 +20,8 @@ namespace cpp_langevin_simulator{
     
     double dt;//The length of each timestep-- no set method, it's got a default value only.
     double dx;//the change between grid points
+
+    double time;//The amount of "time" since sim started
     void set_dx();
 
     int pos_size;//the number of indices we have -- the same as the lines in the input file
@@ -41,6 +43,6 @@ namespace cpp_langevin_simulator{
     void step();//a single timestep in the simulation
     double eta();
     int get_idx(double spot);
-  Langevin() : dt(0.01) {}
+  Langevin() : dt(0.01), time(0.0) {}
   };
 }

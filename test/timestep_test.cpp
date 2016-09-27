@@ -34,6 +34,11 @@ SCENARIO( "Integrator can move the particle in a few steps'", "[integrator]"){
 	double new_x = integrator.x;
 	REQUIRE( fabs(integrator.x - x_init) > EPSILON);
       }
+      AND_THEN("The time value should change."){
+	double t_init = integrator.time;
+	integrator.step();
+	REQUIRE( (integrator.time - t_init) > EPSILON);
+      }
     }
 //    WHEN("Time progresses a ways"){}
   }

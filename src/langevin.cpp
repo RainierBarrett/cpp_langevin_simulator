@@ -100,9 +100,10 @@ namespace cpp_langevin_simulator{
 //    return(x == 0 ? 0 : fmod(fmod(x, pos_max), ((pos_size-1)/ (pos_max - pos_min))));
     //a lazy brute-force way of finding the idx
     const double EPSILON = 0.0005;//for double "comparisons"
+    if(!dx){set_dx();}
 //    std::cout << "dx is " << dx << "\n";
     for(int i = 0; i < pos_size; i++){
-      if((((spot - positions[i]) - dx) <=EPSILON)){
+      if((((spot - positions[i]) - dx) <= EPSILON)){
 	return(i);
       }
     }
@@ -128,5 +129,6 @@ namespace cpp_langevin_simulator{
 //    std:: cout << "New x value is " << new_x << "\n";
     double new_v = v + dt * tot_force;
     set_v(new_v);
+    time += dt;
   }
 }
