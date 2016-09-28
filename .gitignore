@@ -25,5 +25,8 @@ build/
 bin/
 lib/
 
+#gcov files can be generated each time...
+*.gcov
+
 # Emacs backup files
 *~
