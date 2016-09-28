@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator.svg?branch=master)](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator)
 
-[![codecov](https://codecov.io/gh/RainierBarrett/cpp_langevin_simulator/branch/master/graph/badge.svg)](https://codecov.io/gh/RainierBarrett/cpp_langevin_simulator)
+[![codecov](https://codecov.io/gh/RainierBarrett/cpp_langevin_simulator/branch/master/graph/badge.svg)](https://codecov.io/gh/RainierBarrett/cpp_langevin_simulator) -- Sadly, this badge isn't working, but I promise I've got 100% coverage as of this upload.
 
 This is a Langevin Dynamics simulator in C++
 
@@ -24,6 +24,15 @@ After building this project you may run its unit tests by using these commands:
     $ make test  # To run all tests via CTest
     $ make catch # Run all tests directly, showing more details to you
 
+Right now the tests are set to run all and reports all at once, too. Use catch to see if an individual test is failing. Right now what I've got covered for testing is as follows:
+
+    * `read_test.cpp` : This tests whether the file-reader is reading a sample file appropriately
+    * `eta_test.cpp`  : This tests whether my random process (eta) is giving different numbers whenever it's called.
+    * `CalculatorTests.cpp`: An example file that came with the cookie cutter and I haven't removed.
+    * `get_pos_test.cpp` : This makes sure the index-grabbing function works appropriately.
+    * `setup_test.cpp` : This tests that all the set-value functions for the Langevin class are working.
+    * `timestep_test.cpp` : This makes sure that the particle's position moves when the `step()` function is called.
+
 ## Checking code coverage
 
 For now, I've been unable to convince Travis to play nice with an automated test for this. To see it for yourself, you'll have to run a command. From within the build directory, you can run:
@@ -31,6 +40,12 @@ For now, I've been unable to convince Travis to play nice with an automated test
     $make coverage
 
 This will run gcov on the Langevin cpp file, and report the code coverage to the terminal.
+
+## TODO
+
+   * Write a test and function to print trajectory to file
+   * Possibly: write a test and function for a better, less granular force-finder (interpolator).
+   * Do some integrated testing.
 
 ## License
 
