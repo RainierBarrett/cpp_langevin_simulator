@@ -3,8 +3,8 @@ sudo: required
 language: cpp
 
 before_script:
-  -sudo apt-get update -qq
-  -sudo apt-get install libboost-random-dev
+  - sudo apt-get update -qq
+  - sudo apt-get install libboost-random-dev
 
 script: 
   - mkdir build
