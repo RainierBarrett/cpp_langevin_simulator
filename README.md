@@ -1,8 +1,9 @@
 # cpp_langevin_simulator
 
-[![Build Status](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator.svg?branch=master)](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator)
+##Current Code Coverage
+100.00%
 
-[![codecov](https://codecov.io/gh/RainierBarrett/cpp_langevin_simulator/branch/master/graph/badge.svg)](https://codecov.io/gh/RainierBarrett/cpp_langevin_simulator) -- Sadly, this badge isn't working, but I promise I've got 100% coverage as of this upload.
+[![Build Status](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator.svg?branch=master)](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator)
 
 This is a Langevin Dynamics simulator in C++
 
