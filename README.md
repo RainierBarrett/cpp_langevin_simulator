@@ -9,7 +9,7 @@ This is a Langevin Dynamics simulator in C++
 
 ## Building From Source
 
-First make sure that you have [CMake](http://www.cmake.org/) and an C++ compiler environment installed.
+First make sure that you have [CMake](http://www.cmake.org/) and a C++ compiler environment installed.
 
 Then open a terminal, go to the source directory and type the following commands:
 
@@ -29,7 +29,6 @@ Right now the tests are set to run all and reports all at once, too. Use catch t
 
     * `read_test.cpp` : This tests whether the file-reader is reading a sample file appropriately
     * `eta_test.cpp`  : This tests whether my random process (eta) is giving different numbers whenever it's called.
-    * `CalculatorTests.cpp`: An example file that came with the cookie cutter and I haven't removed.
     * `get_pos_test.cpp` : This makes sure the index-grabbing function works appropriately.
     * `setup_test.cpp` : This tests that all the set-value functions for the Langevin class are working.
     * `timestep_test.cpp` : This makes sure that the particle's position moves when the `step()` function is called.
