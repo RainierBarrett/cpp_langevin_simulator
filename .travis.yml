@@ -21,6 +21,7 @@ script:
 
 after_success:
   - chmod a+rw src/CMakeFiles/sharedlib.dir/langevin.cpp.gcno
+  - sudo updatedb
   - make coverage
 
 
