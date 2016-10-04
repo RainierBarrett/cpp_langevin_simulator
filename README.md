@@ -5,6 +5,8 @@
 
 [![Build Status](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator.svg?branch=master)](https://travis-ci.org/RainierBarrett/cpp_langevin_simulator)
 
+[![Coverage Status](https://coveralls.io/repos/github/RainierBarrett/cpp_langevin_simulator/badge.svg?branch=master)](https://coveralls.io/github/RainierBarrett/cpp_langevin_simulator?branch=master)
+
 This is a Langevin Dynamics simulator in C++
 
 ## Building From Source

@@ -7,6 +7,7 @@ before_script:
   - sudo apt-get update -qq
   - sudo apt-get install libboost-random-dev
   - sudo apt-get install mlocate
+  - pip install --user cpp-coveralls
 
 script: 
   - mkdir build
@@ -15,6 +16,7 @@ script:
   - cp ../pot_example.txt .
   - cp ../pot_example.txt ./test
   - cp ../pot_example.txt ./Testing
+  - ./configure --enable-gcov
   - make
 
   - make test
@@ -27,7 +29,7 @@ after_success:
   - printf "(gcov files can be found at ${GCOV_PATH})\n"
   - sudo chmod a+rw $GCOV_PATH/langevin.cpp.gcno
   - sudo gcov $GCOV_PATH/langevin.cpp.gcov -n | grep langevin.cpp\' -A1
-
+  - coveralls --exclude lib --exclude tests --gcov-opitons '\-lp'
 
 
 
