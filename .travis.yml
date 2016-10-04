@@ -27,7 +27,7 @@ after_success:
   - printf "(gcov files can be found at ${GCOV_PATH})\n"
   - sudo chmod a+rw $GCOV_PATH/langevin.cpp.gcno
   - sudo gcov $GCOV_PATH/langevin.cpp.gcov -n | grep langevin.cpp\' -A1
-  - coveralls --exclude lib --exclude tests --gcov-opitons '\-lp'
+  - coveralls --exclude lib --exclude tests
 
 
 
