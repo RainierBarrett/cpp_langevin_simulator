@@ -1,7 +1,7 @@
 sudo: required
 
 language: cpp
-compiler: g++
+compiler: gcc
 
 before_script:
   - sudo apt-get update -qq
@@ -19,6 +19,7 @@ script:
   - make
   - make test
   - make catch
+  - make check
 
 after_success:
   - sudo updatedb
@@ -27,7 +28,7 @@ after_success:
   - printf "(gcov files can be found at ${GCOV_PATH})\n"
   - sudo chmod a+rw $GCOV_PATH/langevin.cpp.gcno
   - sudo gcov $GCOV_PATH/langevin.cpp.gcov -n | grep langevin.cpp\' -A1
-  - coveralls --exclude lib --exclude tests
+  - coveralls --exclude lib --exclude test
 
 
 
