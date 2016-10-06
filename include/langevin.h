@@ -21,8 +21,13 @@ namespace cpp_langevin_simulator{
     
     double m;//The big particle mass
     void set_m(double new_m);//sets the mass, called in setup
-    
+
+    double T;//no set method for this guy, he's read right from the input.
+        
     double dt;//The length of each timestep-- no set method, it's got a default value only.
+
+    double tot_time;
+    
     double dx;//the change between grid points
 
     double time;//The amount of "time" since sim started
@@ -51,8 +56,16 @@ namespace cpp_langevin_simulator{
     double eta();
     int get_idx(double spot);
     std::string outfile_name;
-    
     std::ofstream outfile;
-  Langevin() : m(1), dt(0.01), time(0.0), lambda(1.0), outfile_name("output.dat") {}
+
+    std::string param_file_name;
+    std::ifstream param_file;
+
+    std::string potential_file_name;
+    std::ifstream potential_file;
+
+    void read_params();
+    
+  Langevin() : T(1.0), m(1), dt(0.01), tot_time(10.0), time(0.0), lambda(3.0), outfile_name("output.dat"), param_file_name("input.txt") {}
   };
 }

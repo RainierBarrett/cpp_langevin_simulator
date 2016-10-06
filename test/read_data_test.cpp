@@ -12,14 +12,17 @@ using namespace cpp_langevin_simulator;
 SCENARIO( "Make sure our routine for reading in params works", "[params]"){
 
   GIVEN( "A parameter file and our integrator"){
-//    const double EPSILON = 0.0005;//for double "comparisons"
+    const double EPSILON = 0.0005;//for double "comparisons"
     Langevin integrator;
-    std::string filename = "./test_params.txt";
-    //std::cout << "THE PLACE I AM LOOKING IS " << filename <<"\n";
     WHEN("reading the parameter file"){
-      integrator.read_params(filename);
-      THEN("we expect x to be a little above the min"){
-	REQUIRE(;
+      integrator.read_params();
+      THEN("we expect the parameters to match up"){
+	REQUIRE(integrator.x < EPSILON);
+	REQUIRE(pow((integrator.v-1.0),2) < EPSILON );
+	REQUIRE(pow((integrator.T-35.0),2) < EPSILON );
+	REQUIRE(pow((integrator.lambda-0.55),2) < EPSILON );
+	REQUIRE(pow((integrator.dt-0.05),2) < EPSILON );
+	REQUIRE(pow((integrator.tot_time -4.0),2) < EPSILON );
       }
     }
   }

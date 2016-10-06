@@ -15,7 +15,6 @@ SCENARIO( "Make sure eta function is random enough", "[eta]"){
     Langevin integrator;
     std::string filename = "./pot_example.txt";
     integrator.read_file(filename);
-    integrator.seed_rng();
     WHEN("making random numbers"){
       double eta1 = integrator.eta();
 //      sleep(1);

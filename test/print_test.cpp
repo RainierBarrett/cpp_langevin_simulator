@@ -14,13 +14,13 @@ SCENARIO( "Make sure our printing function works", "[printer]"){
   GIVEN( "An input file and the integrator's printer"){
     const double EPSILON = 0.0005;//for double "comparisons"
     Langevin integrator;
-    std::string filename = "./pot_example.txt";
+    std::string filename = "./negative_axis_pot.txt";
     //std::cout << "THE PLACE I AM LOOKING IS " << filename <<"\n";
     integrator.read_file(filename);
     integrator.set_x(integrator.positions[integrator.pos_size / 2]);
-    integrator.set_v(10.0);
+    integrator.set_v(1.0);
     WHEN("printing to a file"){
-      for(int i = 0; i< 45; i++){
+      for(int i = 0; i< 450; i++){
 	integrator.step();	
       }
       using namespace std;
@@ -36,8 +36,8 @@ SCENARIO( "Make sure our printing function works", "[printer]"){
 	REQUIRE( input.is_open() == true);//known number of lines
 //	REQUIRE( sizeof(integrator.forces) == 200);
       }
-      AND_THEN("The output file should have one line"){//just check a few points
-	REQUIRE(nlines == 47);
+      AND_THEN("The output file should have correct number of lines"){//just check a few points
+	REQUIRE(nlines == 452);
       }
     }
   }

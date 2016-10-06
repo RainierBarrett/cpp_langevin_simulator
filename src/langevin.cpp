@@ -38,6 +38,7 @@ namespace cpp_langevin_simulator{
     set_pos_max(positions[pos_size -1]);
     set_dx();
     //cout << "and now forces[0] = " << forces[0] << "\n";
+    seed_rng();
   }
 
   void Langevin::set_pos_size(int size){
@@ -126,12 +127,14 @@ namespace cpp_langevin_simulator{
 //    int idx = (int(floor((spot - pos_min) / dx)));
 //    double remainder = fmod(spot, dx);
 //    double near_bottom_point = (spot - remainder);
-    for(int i = 0; i < pos_size; i++){
+    int i = 0;
+    for(i; i < pos_size; i++){
       if(fabs(positions[i] - spot) < dx){
 //	std::cout<<"The size of the positions array is " << pos_size <<".\n";
-	return(i);
+	break;
       }
     }
+    return(i);
   }
 
   void Langevin::set_dx(){
@@ -147,7 +150,7 @@ namespace cpp_langevin_simulator{
     }
   //the gaussian process term
   double Langevin::eta(){//should make some way to have the distro be class member. Later.
-    boost::normal_distribution<> nd(0.0,1.0);
+    boost::normal_distribution<> nd(0.0,sqrt(2 * T * lambda));
     boost::variate_generator<boost::mt19937&, boost::normal_distribution<> > var_nor(rng, nd);
     double number = var_nor();
     return(number);
@@ -173,5 +176,12 @@ namespace cpp_langevin_simulator{
     time += dt;
     outfile << setw(5) << idx<< setw(10) <<  time << setw(15) << x << setw(15) << v << endl;
 
+  }
+
+  void Langevin::read_params(){
+    using namespace std;
+    param_file.open(param_file_name.c_str());
+    param_file >> x >> v >> T >> lambda >> dt >> tot_time >> potential_file_name;
+    param_file.close();
   }
 }
