@@ -27,5 +27,8 @@ if (PROJECT_BUILD_STATIC)
     install(TARGETS sharedlib DESTINATION lib)
   endif(PROJECT_BUILD_SHARED)
 
-  file(GLOB TXT_FILES "${MAINFOLDER}/*.txt")
-  file(COPY ${TXT_FILES} DESTINATION "${MAINFOLDER}/bin")
+file(GLOB TXT_FILES "${MAINFOLDER}/*.txt")
+file(COPY ${TXT_FILES} DESTINATION "${MAINFOLDER}/bin")
+
+#add_executable(langevin_sim ${PROJECT_SOURCE_DIR}/include/langevin.h ${PROJECT_SOURCE_DIR}/src/langevin.cpp)
+#target_link_libraries(${PROJECT_BIN} ${PROJECT_LIBS})

@@ -7,6 +7,9 @@ link_directories(${MAINFOLDER}/lib)
 include_directories("${CATCH_DIR}/include")
 add_executable(${TEST_BIN} ${TEST_SRC})
 target_link_libraries(${TEST_BIN} ${TEST_LIBS} gcov)
+add_executable(langevin_sim ${MAINFOLDER}/src/langevin_sim.cpp ${MAINFOLDER}/src/langevin.cpp)
+#target_link_libraries(${PROJECT_NAME}_test)
+#include_directories(${MAINFOLDER}/include ${MAINFOLDER}/src)
 
 # configure unit tests via CTest
 add_test(NAME AllTests COMMAND ${TEST_BIN})
@@ -17,3 +20,6 @@ file(GLOB TXT_FILES "${MAINFOLDER}/*.txt")
 file(COPY ${TXT_FILES} DESTINATION "${MAINFOLDER}/build/test")
 add_custom_target(catch "${MAINFOLDER}/bin/${TEST_BIN}" DEPENDS ${TEST_BIN} COMMENT "Executing unit tests..." VERBATIM SOURCES ${TEST_SRC})
 add_custom_target(coverage "${MAINFOLDER}/coverage.sh")
+add_custom_target(run "${MAINFOLDER}/bin/langevin_sim" COMMENT "Executing simulation..."
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy "${MAINFOLDER}/bin/output.dat" "${MAINFOLDER}/build")

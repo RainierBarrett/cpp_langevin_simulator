@@ -11,6 +11,8 @@ This is a Langevin Dynamics simulator in C++, using the Euler integration scheme
 
 First make sure that you have [CMake](http://www.cmake.org/) and a C++ compiler environment installed.
 
+*BEFORE YOU BUILD* the project, place input file with exact name "input.txt" in the main directory, and the potential table it points to. See `pot_example.txt` for an example potential table.
+
 Then open a terminal, go to the source directory and type the following commands:
 
     $ mkdir build
@@ -41,9 +43,17 @@ For now, I've been unable to convince Travis to play nice with an automated test
 
 This will run gcov on the Langevin cpp file, and report the code coverage to the terminal.
 
+## Running the program
+
+To run the program, enter your build directory and simply run the command:
+
+   * make run
+
+The program will detect your input file and generate an output file titled "output.dat" within the build directory.
+
 ## TODO
 
-   * Do some integrated testing.
+   * Possibly add an interpolation method for the integrator.
 
 ## License
 
