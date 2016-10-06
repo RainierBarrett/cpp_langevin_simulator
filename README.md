@@ -29,11 +29,15 @@ After building this project you may run its unit tests by using these commands:
 
 Right now the tests are set to run all and reports all at once, too. Use catch to see if an individual test is failing. Right now what I've got covered for testing is as follows:
 
-    * `read_test.cpp` : This tests whether the file-reader is reading a sample file appropriately
     * `eta_test.cpp`  : This tests whether my random process (eta) is giving different numbers whenever it's called.
     * `get_pos_test.cpp` : This makes sure the index-grabbing function works appropriately.
+    * `pbc_test.cpp` : This tests whether the Periodic Boundary Conditions are working.
+    * `print_test.cpp` : This ensures that the program prints to a file appropriately.
+    * `read_data_test.cpp` : This makes sure that the program can read the parameter file.
+    * `read_test.cpp` : This tests whether the file-reader is reading a sample file appropriately
     * `setup_test.cpp` : This tests that all the set-value functions for the Langevin class are working.
     * `timestep_test.cpp` : This makes sure that the particle's position moves when the `step()` function is called.
+    * `
 
 ## Checking code coverage
 

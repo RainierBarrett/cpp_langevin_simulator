@@ -33,5 +33,13 @@ lib/
 
 # Text files except CMake files
 *.txt
+!input.txt
 !pot_example.txt
 !Cmake*.txt
+
+
+
+
+
+
+
