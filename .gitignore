@@ -25,8 +25,12 @@ build/
 bin/
 lib/
 
-#gcov files can be generated each time...
+# gcov files
 *.gcov
 
 # Emacs backup files
 *~
+
+# Text files except CMake files
+*.txt
+!Cmake*.txt

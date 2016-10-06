@@ -56,7 +56,17 @@ namespace cpp_langevin_simulator{
   }
 
   void Langevin::set_x(double new_x){
-    x = (new_x == 0 ? 0 : fmod(new_x, pos_max));//brute-force PBCs
+    const double EPSILON = 0.0005;//for double "comparisons"
+    if(new_x > pos_max){
+      x = ((new_x - (pos_max - pos_min)));
+    }
+    else if(new_x < pos_min){
+        x = (new_x + (pos_max - pos_min));
+    }
+    else{
+      x = new_x;
+    }
+    
     return;
   }
 
@@ -114,18 +124,14 @@ namespace cpp_langevin_simulator{
 //    }
 //    std::cout<< "the minimum position is "<<pos_min << "and dx is " << dx <<"\n";
 //    int idx = (int(floor((spot - pos_min) / dx)));
-    double remainder = fmod(spot, dx);
-    double near_bottom_point = (spot - remainder);
+//    double remainder = fmod(spot, dx);
+//    double near_bottom_point = (spot - remainder);
     for(int i = 0; i < pos_size; i++){
-      if(pow((positions[i] - near_bottom_point),2) < EPSILON){
+      if(fabs(positions[i] - spot) < dx){
 //	std::cout<<"The size of the positions array is " << pos_size <<".\n";
 	return(i);
       }
     }
-    
-      
-//    }
-//    return(-1);
   }
 
   void Langevin::set_dx(){
@@ -149,13 +155,23 @@ namespace cpp_langevin_simulator{
   
   //A simple Euler-integrated Langevin timestep. Updates the position and velocity.
   void Langevin::step(){
+    using namespace std;
     int idx = get_idx(x);
+    if(time == 0){
+      outfile.open(outfile_name.c_str());
+      outfile<<setw(5)<<"Index"<<setw(10)<<"Time"<<setw(15)<<"Position" <<setw(15) << "Velocity\n";
+      outfile << setw(5) << idx<< setw(10) <<  time << setw(15) << x << setw(15) << v << endl;
+    }
+
     double tot_force = -lambda * v + eta() - forces[idx]/m;
     double new_x = x + dt*v;
     set_x(new_x);
+    idx = get_idx(x);
 //    std:: cout << "New x value is " << new_x << "\n";
     double new_v = v + dt * tot_force;
     set_v(new_v);
     time += dt;
+    outfile << setw(5) << idx<< setw(10) <<  time << setw(15) << x << setw(15) << v << endl;
+
   }
 }

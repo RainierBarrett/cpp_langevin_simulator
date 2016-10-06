@@ -3,6 +3,8 @@
 #include <boost/random/normal_distribution.hpp>
 #include <cstdlib>
 #include <string>
+#include <fstream>
+
 namespace cpp_langevin_simulator{
 
   class Langevin{
@@ -48,6 +50,9 @@ namespace cpp_langevin_simulator{
     void step();//a single timestep in the simulation
     double eta();
     int get_idx(double spot);
-  Langevin() : dt(0.01), time(0.0), lambda(1.0) {}
+    std::string outfile_name;
+    
+    std::ofstream outfile;
+  Langevin() : m(1), dt(0.01), time(0.0), lambda(1.0), outfile_name("output.dat") {}
   };
 }
