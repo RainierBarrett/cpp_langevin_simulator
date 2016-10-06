@@ -35,6 +35,7 @@ lib/
 *.txt
 !input.txt
 !pot_example.txt
+!negative_axis_pot.txt
 !Cmake*.txt
 
 
