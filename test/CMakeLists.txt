@@ -26,6 +26,12 @@ add_custom_target(run "${MAINFOLDER}/bin/langevin_sim"
   COMMENT "Executing simulation..."
   
   )
-file(COPY "${MAINFOLDER}/bin/output.dat" DESTINATION "${MAINFOLDER}/build")
+
+if(EXISTS "${MAINFOLDER}/bin/output.dat")
+  file(COPY "${MAINFOLDER}/bin/output.dat" DESTINATION "${MAINFOLDER}/build")
+else()
+   
+endif()
+
 #  POST_BUILD
 # COMMAND ${CMAKE_COMMAND} -E copy "${MAINFOLDER}/build/test/output.dat" "${MAINFOLDER}/build")
