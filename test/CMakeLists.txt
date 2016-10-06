@@ -20,6 +20,12 @@ file(GLOB TXT_FILES "${MAINFOLDER}/*.txt")
 file(COPY ${TXT_FILES} DESTINATION "${MAINFOLDER}/build/test")
 add_custom_target(catch "${MAINFOLDER}/bin/${TEST_BIN}" DEPENDS ${TEST_BIN} COMMENT "Executing unit tests..." VERBATIM SOURCES ${TEST_SRC})
 add_custom_target(coverage "${MAINFOLDER}/coverage.sh")
-add_custom_target(run "${MAINFOLDER}/bin/langevin_sim" COMMENT "Executing simulation..."
-  POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy "${MAINFOLDER}/bin/output.dat" "${MAINFOLDER}/build")
+add_custom_target(run "${MAINFOLDER}/bin/langevin_sim" 
+  
+  PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${MAINFOLDER}/input.txt" "${MAINFOLDER}/bin/" 
+  COMMENT "Executing simulation..."
+  
+  )
+file(COPY "${MAINFOLDER}/bin/output.dat" DESTINATION "${MAINFOLDER}/build")
+#  POST_BUILD
+# COMMAND ${CMAKE_COMMAND} -E copy "${MAINFOLDER}/build/test/output.dat" "${MAINFOLDER}/build")

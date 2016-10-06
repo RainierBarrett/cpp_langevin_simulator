@@ -165,18 +165,19 @@ namespace cpp_langevin_simulator{
       outfile<<setw(5)<<"Index"<<setw(10)<<"Time"<<setw(15)<<"Position" <<setw(15) << "Velocity\n";
       outfile << setw(5) << idx<< setw(10) <<  time << setw(15) << x << setw(15) << v << endl;
     }
-    if(time == tot_time){
+    time += dt;
+    if(time >= tot_time){
       return;
     }
 
-    double tot_force = -lambda * v + eta() - forces[idx]/m;
+    double tot_force = -lambda * v + eta() + forces[idx]/m;
     double new_x = x + dt*v;
     set_x(new_x);
     idx = get_idx(x);
 //    std:: cout << "New x value is " << new_x << "\n";
     double new_v = v + dt * tot_force;
     set_v(new_v);
-    time += dt;
+    
     outfile << setw(5) << idx<< setw(10) <<  time << setw(15) << x << setw(15) << v << endl;
 
   }
