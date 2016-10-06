@@ -43,8 +43,6 @@ This will run gcov on the Langevin cpp file, and report the code coverage to the
 
 ## TODO
 
-   * Write a test and function to print trajectory to file
-   * Possibly: write a test and function for a better, less granular force-finder (interpolator).
    * Do some integrated testing.
 
 ## License
