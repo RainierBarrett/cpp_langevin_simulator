@@ -39,13 +39,13 @@ Tests are as follows:
     * `read_test.cpp` : This tests whether the file-reader is reading a sample file appropriately
     * `setup_test.cpp` : This tests that all the set-value functions for the Langevin class are working.
     * `timestep_test.cpp` : This makes sure that the particle's position moves when the `step()` function is called.
-    * `
+
 
 ## Checking code coverage
 
 For now, I've been unable to convince Travis to play nice with an automated test for this. To see it for yourself, you'll have to run a command. From within the build directory, you can run:
 
-    $make coverage
+    $ make coverage
 
 This will run gcov on the Langevin cpp file, and report the code coverage to the terminal.
 
@@ -53,11 +53,11 @@ This will run gcov on the Langevin cpp file, and report the code coverage to the
 
 To run the program, edit the `input.txt` file in the main to your choosing, then enter your build directory and simply run the command:
 
-   * make sim
+   $ make sim
 
 This will detect your input file and generate an output file titled "output.dat" within the build directory. Astute observers will see that there is a `make run` command. *DO NOT USE* this command. As it is implemented right now, `make sim` is the only command that totally fulfills the file copying necessary.
 
-Input format:
+Input format --  input file should contain one line with all values space-separated as follows:
 
 `initial_position (float) initial_velocity (float) temperature (float) damping_coefficient (float) time_step (float) total_time (float) potential_energy_filename (string)`.
 
