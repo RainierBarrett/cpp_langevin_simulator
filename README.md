@@ -27,7 +27,9 @@ After building this project you may run its unit tests by using these commands:
     $ make test  # To run all tests via CTest
     $ make catch # Run all tests directly, showing more details to you
 
-Right now the tests are set to run all and reports all at once, too. Use catch to see if an individual test is failing. Right now what I've got covered for testing is as follows:
+Right now the tests are set to run all and reports all at once, too. Use catch to see if an individual test is failing. *DO NOT EDIT* the `test_input.txt` file, or **your tests will fail**. 
+
+Tests are as follows:
 
     * `eta_test.cpp`  : This tests whether my random process (eta) is giving different numbers whenever it's called.
     * `get_pos_test.cpp` : This makes sure the index-grabbing function works appropriately.
@@ -49,15 +51,20 @@ This will run gcov on the Langevin cpp file, and report the code coverage to the
 
 ## Running the program
 
-To run the program, enter your build directory and simply run the command:
+To run the program, edit the `input.txt` file in the main to your choosing, then enter your build directory and simply run the command:
 
-   * make run
+   * make sim
 
-The program will detect your input file and generate an output file titled "output.dat" within the build directory.
+This will detect your input file and generate an output file titled "output.dat" within the build directory. Astute observers will see that there is a `make run` command. *DO NOT USE* this command. As it is implemented right now, `make sim` is the only command that totally fulfills the file copying necessary.
+
+Input format:
+
+`initial_position (float) initial_velocity (float) temperature (float) damping_coefficient (float) time_step (float) total_time (float) potential_energy_filename (string)`.
 
 ## TODO
 
    * Possibly add an interpolation method for the integrator.
+   * Learn more CMake and fix the workaround with the .sim.sh script.
 
 ## License
 

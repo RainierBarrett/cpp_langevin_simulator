@@ -19,6 +19,6 @@ int main(){
     integrator.step();
   }
   using namespace std;
-  cout<<"FINAL CONFIGURATION: " << setw(5) << "x =" << setw(5) << integrator.x  << setw(5) << "v =" << setw(5) << integrator.v <<".\n" << "See "<<  integrator.outfile_name<<" for full trajectory.\n";
+  cout<<"\n\nFINAL CONFIGURATION: " << setw(5) << "x =" << setw(5) << integrator.x  << setw(5) << "v =" << setw(5) << integrator.v <<".\n" << "See "<<  integrator.outfile_name<<" for full trajectory.\n\n\n";
   return(0);
 }

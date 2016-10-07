@@ -1,1 +1,1 @@
-0.0 1.0 35.0 0.55 0.05 4.0 negative_axis_pot.txt
+2.0 1.2 45.0 0.35 0.025 4.0 example_pot.txt
