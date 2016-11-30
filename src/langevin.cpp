@@ -138,6 +138,7 @@ namespace cpp_langevin_simulator{
   }
 
   void Langevin::set_dx(){
+    //be SURE to only call this after filling the positions array!
     dx = positions[1] - positions[0];
     return;
   }
@@ -149,7 +150,7 @@ namespace cpp_langevin_simulator{
     return;
     }
   //the gaussian process term
-  double Langevin::eta(){//should make some way to have the distro be class member. Later.
+  double Langevin::eta(){
     boost::normal_distribution<> nd(0.0,sqrt(2 * T * lambda));
     boost::variate_generator<boost::mt19937&, boost::normal_distribution<> > var_nor(rng, nd);
     double number = var_nor();
